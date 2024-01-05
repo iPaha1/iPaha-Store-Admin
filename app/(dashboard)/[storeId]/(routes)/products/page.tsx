@@ -25,10 +25,12 @@ const ProductsPage = async ({
       createdAt: 'desc'
     }
   });
+  
 
   const formattedProducts: ProductColumn[] = products.map((item) => ({
     id: item.id,
     name: item.name,
+    description: item.description, // Add the description property
     isFeatured: item.isFeatured,
     isArchived: item.isArchived,
     price: formatter.format(item.price.toNumber()),

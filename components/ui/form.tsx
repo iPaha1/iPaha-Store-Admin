@@ -146,7 +146,8 @@ const FormMessage = React.forwardRef<
 >(({ className, children, ...props }, ref) => {
   const { error, formMessageId } = useFormField()
   // const body = error ? String(error?.message) : children
-  const body = "Required"
+  // const body = "Required"
+  const body = " " // This is a hack to make the error message appear. The error message is "Required
 
   if (!body) {
     return null

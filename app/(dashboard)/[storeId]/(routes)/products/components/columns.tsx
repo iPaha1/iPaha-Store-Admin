@@ -5,8 +5,9 @@ import { ColumnDef } from "@tanstack/react-table"
 import { CellAction } from "./cell-action"
 
 export type ProductColumn = {
-  id: string
+  id: string;
   name: string;
+  description: string; // Add the description property
   price: string;
   category: string;
   size: string;
@@ -20,6 +21,15 @@ export const columns: ColumnDef<ProductColumn>[] = [
   {
     accessorKey: "name",
     header: "Name",
+  },
+  {
+    accessorKey: "description",
+    header: "Description",
+    cell: ({ row }) => (
+      <div className="description-cell" style={{ maxHeight: "20px", maxWidth: "200px", overflowY: "auto" }}>
+        {row.original.description}
+      </div>
+    ),
   },
   {
     accessorKey: "isArchived",
@@ -51,6 +61,7 @@ export const columns: ColumnDef<ProductColumn>[] = [
       </div>
     )
   },
+  
   {
     accessorKey: "createdAt",
     header: "Date",

@@ -30,6 +30,7 @@ import { toast } from "react-toastify"
 
 const formSchema = z.object({
   name: z.string().min(1),
+  description: z.string().min(1), // Add the description field
   images: z.object({ url: z.string() }).array(),
   price: z.coerce.number().min(1),
   categoryId: z.string().min(1),
@@ -66,12 +67,14 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   const description = initialData ? 'Edit a product.' : 'Add a new product';
   const toastMessage = initialData ? 'Product updated.' : 'Product created.';
   const action = initialData ? 'Save changes' : 'Create';
+  
 
   const defaultValues = initialData ? {
     ...initialData,
     price: parseFloat(String(initialData?.price)),
   } : {
     name: '',
+    description: '', // Add description field
     images: [],
     price: 0,
     categoryId: '',
@@ -171,6 +174,19 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormLabel>Name</FormLabel>
                   <FormControl>
                     <Input disabled={loading} placeholder="Product name" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Input disabled={loading} placeholder="Product description" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
