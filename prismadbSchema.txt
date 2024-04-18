@@ -9,6 +9,7 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 //  Define your own datamodels here and run `yarn redwood db save` to create
